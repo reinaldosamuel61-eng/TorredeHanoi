@@ -1,0 +1,102 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
+}
+
+.container {
+    text-align: center;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.controls {
+    margin: 20px 0;
+}
+
+button {
+    padding: 8px 16px;
+    margin-left: 10px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.game-board {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 250px;
+    margin-top: 40px;
+}
+
+.tower-container {
+    position: relative;
+    width: 120px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.peg {
+    position: absolute;
+    bottom: 25px; /* Acima da base/label */
+    width: 10px;
+    height: 160px;
+    background-color: #8B4513;
+    border-radius: 5px 5px 0 0;
+    z-index: 1;
+}
+
+.disks {
+    display: flex;
+    flex-direction: column-reverse; /* Empilha de baixo para cima */
+    align-items: center;
+    width: 100%;
+    z-index: 2;
+    margin-bottom: 25px; /* Espaço para a label */
+}
+
+.disk {
+    height: 20px;
+    border-radius: 10px;
+    background-color: #ff6b6b;
+    border: 1px solid #d63031;
+    margin-top: 2px;
+    transition: transform 0.3s ease;
+}
+
+.label {
+    position: absolute;
+    bottom: 0;
+    font-weight: bold;
+    width: 100%;
+    border-top: 4px solid #333;
+    padding-top: 5px;
+}

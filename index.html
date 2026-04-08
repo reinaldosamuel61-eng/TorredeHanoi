@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torre de Hanói</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Torre de Hanói</h1>
+        
+        <div class="controls">
+            <label for="numDisks">Número de discos:</label>
+            <input type="number" id="numDisks" min="3" max="7" value="3">
+            <button id="btnSolve">Resolver</button>
+            <button id="btnReset">Reiniciar</button>
+        </div>
+
+        <div class="game-board">
+            <div class="tower-container" id="tower-A">
+                <div class="peg"></div>
+                <div class="disks"></div>
+                <div class="label">Origem (A)</div>
+            </div>
+            <div class="tower-container" id="tower-B">
+                <div class="peg"></div>
+                <div class="disks"></div>
+                <div class="label">Auxiliar (B)</div>
+            </div>
+            <div class="tower-container" id="tower-C">
+                <div class="peg"></div>
+                <div class="disks"></div>
+                <div class="label">Destino (C)</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
