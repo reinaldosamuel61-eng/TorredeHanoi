@@ -46,6 +46,18 @@ button:disabled {
     cursor: not-allowed;
 }
 
+/* Nova classe: Estilo do contador */
+.counter {
+    margin-top: 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #555;
+}
+
+.counter span {
+    color: #d63031;
+}
+
 .game-board {
     display: flex;
     justify-content: space-around;
@@ -66,7 +78,7 @@ button:disabled {
 
 .peg {
     position: absolute;
-    bottom: 25px; /* Acima da base/label */
+    bottom: 25px;
     width: 10px;
     height: 160px;
     background-color: #8B4513;
@@ -76,11 +88,11 @@ button:disabled {
 
 .disks {
     display: flex;
-    flex-direction: column-reverse; /* Empilha de baixo para cima */
+    flex-direction: column-reverse;
     align-items: center;
     width: 100%;
     z-index: 2;
-    margin-bottom: 25px; /* Espaço para a label */
+    margin-bottom: 25px;
 }
 
 .disk {
