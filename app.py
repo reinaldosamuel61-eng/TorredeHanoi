@@ -9,7 +9,7 @@ from fpdf import FPDF
 # --- 1. CONFIGURAÇÃO DA PÁGINA ---
 st.set_page_config(page_title="Caixa Louvor Eterno", page_icon="💰", layout="wide")
 
-# --- 2. ESTILO CSS E CONFIGURAÇÕES (Dark Mode Premium & Mobile Friendly) ---
+# --- 2. ESTILO CSS GERAL E CONFIGURAÇÕES ---
 st.markdown("""
     <!-- Bloqueia o Google Chrome de sugerir tradução -->
     <meta name="google" content="notranslate">
@@ -75,64 +75,6 @@ st.markdown("""
         border-radius: 10px;
     }
     .stDataFrame { background-color: #1e293b; }
-
-    /* ========================================================
-       TRUQUE CSS DE FORÇA BRUTA PARA O BOTÃO DE UPLOAD
-       ======================================================== */
-    /* Remove preenchimento do bloco principal */
-    [data-testid="stFileUploader"] {
-        padding: 0 !important;
-        margin-bottom: 0 !important;
-    }
-    
-    /* Destrói a borda tracejada e o fundo cinza da zona de arrastar */
-    [data-testid="stFileUploadDropzone"] {
-        border: none !important;
-        background-color: transparent !important;
-        padding: 0 !important;
-        min-height: 0 !important;
-    }
-    
-    /* Esconde ABSOLUTAMENTE tudo que for texto, descrição de limite ou ícone */
-    [data-testid="stFileUploadDropzone"] [data-testid="stMarkdownContainer"],
-    [data-testid="stFileUploadDropzone"] svg,
-    [data-testid="stFileUploadDropzone"] small {
-        display: none !important;
-    }
-    
-    /* Estiliza apenas o botão interno para ser o nosso botão principal */
-    [data-testid="stFileUploadDropzone"] button {
-        width: 100% !important;
-        height: 3em !important;
-        border-radius: 12px !important;
-        background-color: #6366f1 !important;
-        border: none !important;
-        color: transparent !important; /* Deixa a palavra nativa "Browse files" invisível */
-        position: relative !important;
-        display: block !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        box-shadow: none !important;
-    }
-    
-    [data-testid="stFileUploadDropzone"] button:hover {
-        background-color: #4f46e5 !important;
-        box-shadow: 0 0 15px rgba(99, 102, 241, 0.4) !important;
-    }
-    
-    /* Imprime o nosso próprio texto perfeitamente alinhado por cima do botão */
-    [data-testid="stFileUploadDropzone"] button::after {
-        content: "📥 IMPORTAR BACKUP";
-        position: absolute !important;
-        top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important;
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        color: white !important;
-        font-size: 14px !important;
-        font-weight: 800 !important;
-        text-transform: uppercase !important;
-    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -573,6 +515,59 @@ else:
 
     # -- AJUSTES --
     elif menu == "Ajustes":
+        
+        # --- INJEÇÃO DO CSS APENAS NESTA ABA ---
+        st.markdown("""
+            <style>
+            /* Truque CSS para transformar o uploader num botão APENAS nesta aba */
+            [data-testid="stFileUploader"] {
+                padding: 0 !important;
+            }
+            [data-testid="stFileUploadDropzone"] {
+                background-color: #6366f1 !important;
+                border: none !important;
+                border-radius: 12px !important;
+                padding: 0 !important;
+                height: 3em !important;
+                min-height: 3em !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                position: relative;
+            }
+            [data-testid="stFileUploadDropzone"]:hover {
+                background-color: #4f46e5 !important;
+                box-shadow: 0 0 15px rgba(99, 102, 241, 0.4) !important;
+            }
+            /* Esconde todos os textos nativos e ícones do Dropzone */
+            [data-testid="stFileUploadDropzone"] > div {
+                display: none !important;
+            }
+            /* Adiciona o nosso texto customizado */
+            [data-testid="stFileUploadDropzone"]::before {
+                content: "📥 IMPORTAR BACKUP";
+                color: white;
+                font-weight: 800;
+                font-size: 14px;
+            }
+            /* Botão invisível esticado por cima de tudo para capturar o clique instantaneamente */
+            [data-testid="stFileUploadDropzone"] button {
+                position: absolute !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                opacity: 0 !important;
+                margin: 0 !important;
+                cursor: pointer !important;
+                z-index: 99 !important;
+            }
+            /* Oculta a lista nativa de ficheiros carregados (usamos as nossas próprias mensagens e botões) */
+            [data-testid="stUploadedFile"] { display: none !important; }
+            </style>
+        """, unsafe_allow_html=True)
+        # ----------------------------------------
+        
         st.markdown("<h3><i class='bi bi-sliders' style='color: #6366f1; margin-right: 10px;'></i>Ajustes do Sistema</h3>", unsafe_allow_html=True)
         if st.session_state.msg_sucesso != "":
             st.success(st.session_state.msg_sucesso); st.session_state.msg_sucesso = ""
@@ -661,7 +656,6 @@ else:
             st.download_button("📤 EXPORTAR BACKUP", data=out.getvalue(), file_name=nome_arq, type="primary", use_container_width=True)
 
         with col_bkp2:
-            # O truque CSS no topo fará com que isto se pareça com um simples botão
             uploaded_file = st.file_uploader("Upload", type=['xlsx', 'csv'], label_visibility="collapsed", key=f"up_{st.session_state.up_key}")
             
             if uploaded_file is not None:
