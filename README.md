@@ -71,11 +71,3 @@ HTML5: Estruturação semântica.
 CSS3: Estilização, layout em Flexbox e transições suaves (transition: transform 0.3s ease).
 
 JavaScript (ES6): Manipulação da DOM (appendChild), controle de eventos, lógica recursiva e uso de setTimeout para o loop de animação.
-
-🤝 Contribuição
-
-Sinta-se à vontade para fazer um fork deste repositório e enviar pull requests com melhorias (como adicionar arrastar-e-soltar para que o próprio utilizador possa jogar, ou adicionar sons!).
-
-📄 Licença
-
-Este projeto está sob a licença MIT. Pode usá-lo, modificá-lo e partilhá-lo livremente.
