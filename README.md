@@ -1,6 +1,6 @@
 🗼 Torre de Hanói - Visualizador de Algoritmo
 
-Um projeto simples, interativo e visual para demonstrar a resolução do clássico quebra-cabeça matemático da Torre de Hanói, construído puramente com HTML, CSS e Vanilla JavaScript.
+Um projeto simples, interativo e visual para demonstrar a resolução do clássico quebra-cabeça matemático da Torre de Hanói, construído puramente com HTML, CSS e JavaScript.
 
 📋 Sobre o Projeto
 
